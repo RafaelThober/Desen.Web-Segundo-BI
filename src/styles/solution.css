@@ -1,0 +1,90 @@
+#solution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 4rem;
+  gap: 5.75rem;
+}
+
+#solution header {
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 33rem;
+}
+
+#solution p {
+  color: var(--second-text-color);
+}
+
+#solution strong {
+  color: var(--primary-color);
+  font-weight: var(--fw-bold);
+}
+
+#solution .even-columns {
+  width: 100%;
+  gap: 2rem;
+  justify-items: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 20.25rem;
+  min-height: 26rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+  background: var(--light-gray);
+  border-radius: 6px;
+
+  box-shadow: rgba(149, 157, 165, 0.4) 0 8px 24px;
+}
+
+.card > span {
+  display: flex;
+  min-height: 8rem;
+  align-items: flex-end;
+}
+
+.card > div {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  gap: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+}
+
+.card p {
+  padding-inline: 1.5rem;
+  color: var(--second-text-color);
+}
+
+.card hr {
+  width: 100%;
+  height: 6px;
+
+  border: none;
+  background: var(--secondary-color);
+}
+
+@media (width >= 1280px) {
+  #solution {
+    padding-block: 7.5rem;
+  }
+
+  #solution header > span > h2 {
+    font-size: var(--fs-sm);
+    color: var(--primary-color);
+  }
+}
