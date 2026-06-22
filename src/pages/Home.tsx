@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Close from "../assets/close.svg";
-import Menu from "../assets/hamburguer.svg";
+import Close from "../assets/Close.svg";
+import Menu from "../assets/Hamburguer.svg";
 import Button from "../components/Button";
 import Logo from "../assets/LogoMarca.svg";
 import HeroRectangleOne from "../assets/images/RectangleOne.png";
