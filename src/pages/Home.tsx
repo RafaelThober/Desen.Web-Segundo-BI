@@ -78,12 +78,45 @@ export default function Home() {
               <div className="mobile-menu-content">
                 <div className="container flex">
                   <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#solution">Soluções</a></li>
-                    <li><a href="#testimonials">Depoimentos</a></li>
-                    <li><a href="#pricing">Preços</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                    <li><a className="reverse-color" href="#">Login</a></li>
+                    <li>
+                      <a href="#" onClick={() => setShowMobileMenu(false)}>
+                        Home
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#solution" onClick={() => setShowMobileMenu(false)}>
+                        Soluções
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#testimonials" onClick={() => setShowMobileMenu(false)}>
+                        Depoimentos
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#pricing" onClick={() => setShowMobileMenu(false)}>
+                        Preços
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="#contact" onClick={() => setShowMobileMenu(false)}>
+                        Contato
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        className="reverse-color"
+                        href="#"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        Login
+                      </a>
+                    </li>
                   </ul>
 
                   <span
