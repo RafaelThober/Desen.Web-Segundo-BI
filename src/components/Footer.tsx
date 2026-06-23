@@ -9,7 +9,7 @@ export default function Footer() {
     <footer>
       <div className="container footer-content">
         <div className="footer-brand">
-          <img src={Logo} alt="Logo da empresa" />
+          <img src={Logo} alt="Logo da Sulco" />
 
           <div className="social-links">
             <a href="#" aria-label="Instagram">
@@ -27,32 +27,32 @@ export default function Footer() {
         </div>
 
         <div className="footer-column">
-          <h3>Empresa</h3>
+          <h3>O clube</h3>
           <a href="#">Sobre nós</a>
-          <a href="#">Faça parte do time</a>
-          <a href="#">Blog</a>
+          <a href="#solution">Como funciona</a>
+          <a href="#pricing">Planos</a>
         </div>
 
         <div className="footer-column">
-          <h3>Funcionalidades</h3>
-          <a href="#">Marketing</a>
-          <a href="#">Análise de dados</a>
-          <a href="#">Boot discord</a>
+          <h3>Descubra</h3>
+          <a href="#">Catálogo</a>
+          <a href="#">Lançamentos</a>
+          <a href="#">Edições especiais</a>
         </div>
 
         <div className="footer-column">
-          <h3>Recursos</h3>
-          <a href="#">IOS & Android</a>
-          <a href="#">Teste a Demo</a>
-          <a href="#">Clientes</a>
-          <a href="#">API</a>
+          <h3>Suporte</h3>
+          <a href="#contact">Fale conosco</a>
+          <a href="#">Dúvidas frequentes</a>
+          <a href="#">Entregas</a>
+          <a href="#">Termos de uso</a>
         </div>
       </div>
 
       <div className="footer-bottom">
         <p>
-          Feito com amor na aula de Programação Web 💙 ©2026 - Todos os direitos
-          reservados.
+          Feito para quem ainda escuta o álbum inteiro. © 2026 Sulco. Todos os
+          direitos reservados.
         </p>
       </div>
     </footer>

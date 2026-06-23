@@ -2,7 +2,6 @@ import Star from "../assets/Star.svg";
 import StarOuter from "../assets/StarOuter.svg";
 
 interface TestimonialCardProps {
-  image: string;
   testimony: string;
   rating: number;
   name: string;
@@ -10,15 +9,27 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({
-  image,
   testimony,
   rating,
   name,
   role,
 }: TestimonialCardProps) {
+  const initials = name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
+
   return (
     <div className="carousel-card">
-      <img src={image} alt={`Foto de ${name}`} />
+      <div
+        className="avatar-initials"
+        role="img"
+        aria-label={`Iniciais de ${name}`}
+      >
+        {initials}
+      </div>
 
       <span className="testimony">
         <p>{testimony}</p>
@@ -29,7 +40,8 @@ export default function TestimonialCard({
           <img
             key={index}
             src={index < rating ? Star : StarOuter}
-            alt="Ícone estrela"
+            alt=""
+            aria-hidden="true"
             width={22}
             height={20}
           />

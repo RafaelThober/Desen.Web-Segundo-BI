@@ -7,8 +7,6 @@ import HeroRectangleOne from "../assets/images/RectangleOne.png";
 import HeroRectangleTwo from "../assets/images/RectangleTwo.png";
 import Champion from "../assets/Champion.svg";
 import Card from "../components/Card";
-import ProfileImageOne from "../assets/images/Elon.png";
-import ProfileImageTwo from "../assets/images/Ryan.png";
 import TestimonialCard from "../components/TestimonialCard";
 import Check from "../assets/Check.svg";
 import Contact from "../components/Contact";
@@ -20,9 +18,9 @@ import "../styles/header.css";
 import "../styles/utility.css";
 import "../styles/hero.css";
 
-
 export default function Home() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
   useEffect(() => {
     const html = document.querySelector("html");
 
@@ -30,13 +28,14 @@ export default function Home() {
       html.style.overflow = showMobileMenu ? "hidden" : "auto";
     }
   }, [showMobileMenu]);
+
   return (
     <>
       <header className="container py-sm">
         <nav className="flex items-center justify-between">
           <img
             src={Logo}
-            alt="Logo da empresa"
+            alt="Logo da Sulco"
             width={220}
             height={80}
           />
@@ -44,11 +43,11 @@ export default function Home() {
           <div className="desktop-only">
             <ul className="flex gap-1">
               <li>
-                <a href="#">Home</a>
+                <a href="#">Início</a>
               </li>
 
               <li>
-                <a href="#solution">Soluções</a>
+                <a href="#solution">Como funciona</a>
               </li>
 
               <li>
@@ -56,7 +55,7 @@ export default function Home() {
               </li>
 
               <li>
-                <a href="#pricing">Preços</a>
+                <a href="#pricing">Planos</a>
               </li>
 
               <li>
@@ -64,15 +63,17 @@ export default function Home() {
               </li>
             </ul>
           </div>
+
           <div className="desktop-only">
             <div className="flex items-center">
-              <a className="reverse-color ml-lg" href="">
-                Login
+              <a className="reverse-color ml-lg" href="#">
+                Entrar
               </a>
 
-              <Button text="Cadastre-se" />
+              <Button text="Assine agora" />
             </div>
           </div>
+
           <div className="mobile-menu">
             {showMobileMenu ? (
               <div className="mobile-menu-content">
@@ -80,30 +81,42 @@ export default function Home() {
                   <ul>
                     <li>
                       <a href="#" onClick={() => setShowMobileMenu(false)}>
-                        Home
+                        Início
                       </a>
                     </li>
 
                     <li>
-                      <a href="#solution" onClick={() => setShowMobileMenu(false)}>
-                        Soluções
+                      <a
+                        href="#solution"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        Como funciona
                       </a>
                     </li>
 
                     <li>
-                      <a href="#testimonials" onClick={() => setShowMobileMenu(false)}>
+                      <a
+                        href="#testimonials"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
                         Depoimentos
                       </a>
                     </li>
 
                     <li>
-                      <a href="#pricing" onClick={() => setShowMobileMenu(false)}>
-                        Preços
+                      <a
+                        href="#pricing"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        Planos
                       </a>
                     </li>
 
                     <li>
-                      <a href="#contact" onClick={() => setShowMobileMenu(false)}>
+                      <a
+                        href="#contact"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
                         Contato
                       </a>
                     </li>
@@ -114,7 +127,7 @@ export default function Home() {
                         href="#"
                         onClick={() => setShowMobileMenu(false)}
                       >
-                        Login
+                        Entrar
                       </a>
                     </li>
                   </ul>
@@ -123,7 +136,12 @@ export default function Home() {
                     className="btn-wrapper"
                     onClick={() => setShowMobileMenu(!showMobileMenu)}
                   >
-                    <img src={Close} alt="Ícone fechar menu" width={24} height={24} />
+                    <img
+                      src={Close}
+                      alt="Ícone fechar menu"
+                      width={24}
+                      height={24}
+                    />
                   </span>
                 </div>
               </div>
@@ -132,45 +150,51 @@ export default function Home() {
                 className="btn-wrapper"
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
               >
-                <img src={Menu} alt="Ícone menu" width={24} height={24} />
+                <img
+                  src={Menu}
+                  alt="Ícone menu"
+                  width={24}
+                  height={24}
+                />
               </span>
             )}
           </div>
         </nav>
       </header>
+
       <main>
         <section id="hero">
           <span className="desktop-only">
             <img
               src={HeroRectangleTwo}
-              alt="Retângulo decorativo da tela inicial"
+              alt="Elemento decorativo da seção inicial"
             />
           </span>
 
           <img
             src={HeroRectangleOne}
-            alt="Retângulo decorativo da tela inicial"
+            alt="Elemento decorativo da seção inicial"
           />
 
           <div className="container content">
-            <p className="desktop-only">Olá</p>
+            <p className="desktop-only">CLUBE DE VINIL</p>
 
             <h1>
-              Comida de mãe direto no seu apê, é só pedir que entregamos para você!
+              Um novo disco na sua porta. Todo mês.
             </h1>
 
             <p>
-              Já pensou em matar a saudade daquela comida caseira? O melhor de tudo,
-              nossas receitas são 100% saudáveis, bora entrar no shape.
+              Descubra artistas, redescubra clássicos e aumente sua coleção
+              com vinis escolhidos especialmente para o seu gosto musical.
             </p>
 
             <div className="flex gap-1">
               <span>
-                <Button text="Cadastre-se" />
+                <Button text="Quero assinar" />
               </span>
 
               <span className="desktop-only">
-                <Button text="Veja mais" secondary />
+                <Button text="Conheça o clube" secondary />
               </span>
             </div>
           </div>
@@ -179,129 +203,137 @@ export default function Home() {
         <section className="container" id="solution">
           <header>
             <span>
-              <h2>Soluções</h2>
-
-              <span className="desktop-only">
-                <h2>Sob medida para você</h2>
-              </span>
+              <h2>Como funciona</h2>
+              <h2 className="solution-title">
+                Curadoria para quem ouve de verdade
+              </h2>
             </span>
 
             <p>
-              Inovação é com a gente! A <strong>DonaFrost </strong>
-              já conquistou diversos clientes, seja você mais um deles,
-              veja tudo que pode ganhar com nossos serviços.
+              A <strong>Sulco</strong> encontra discos que combinam com você
+              e transforma cada entrega em uma nova experiência musical.
             </p>
           </header>
 
           <section className="even-columns">
             <Card
               icon={Champion}
-              title="Produto Vencedor"
-              description="Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage."
+              title="Curadoria pessoal"
+              description="Conte para a gente o que você ouve e receba discos selecionados de acordo com seus artistas, gêneros e descobertas favoritas."
             />
 
             <Card
               icon={Champion}
-              title="Produto Vencedor"
-              description="Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage."
+              title="Edições especiais"
+              description="Tenha acesso antecipado a lançamentos, reedições, prensagens coloridas e títulos selecionados para colecionadores."
             />
 
             <Card
               icon={Champion}
-              title="Produto Vencedor"
-              description="Ideia matadora, nosso time já ganhou diversos eventos de inovação com nosso produto, entre eles podemos citar o CityFarm da FAG e Startup Garage."
+              title="Entrega protegida"
+              description="Cada vinil é embalado com cuidado para chegar intacto, pronto para sair da caixa e tocar na sua vitrola."
             />
           </section>
         </section>
+
         <section id="testimonials">
           <header>
             <span>
-              <p className="desktop-only">Conselho de quem conhece</p>
-              <h2>Cada cliente importa!</h2>
+              <p className="desktop-only">
+                De quem já colocou a agulha no disco
+              </p>
+
+              <h2>Quem assina, escuta diferente.</h2>
             </span>
 
             <p>
-              Quem já pediu sabe da qualidade das nossas receitas. Estamos tirando
-              aquela ideia de que comida congelada precisa ser algo sem gosto.
+              Nossa comunidade reúne ouvintes curiosos, apaixonados por música
+              e colecionadores sempre procurando o próximo grande disco.
             </p>
           </header>
 
           <section className="carousel">
             <div className="carousel-content">
               <TestimonialCard
-                image={ProfileImageOne}
-                testimony="Certamente o mercado chinês de elétricos está bombando, só existe uma coisa melhor do que isso: provar uma boa comida DonaFrost no almoço."
-                rating={4}
-                name="Ellon Ma"
-                role="CEO BING CHILLING"
+                testimony="A curadoria realmente entendeu meu gosto. Recebi um disco que eu nunca teria procurado sozinho e ele já virou um dos favoritos da coleção."
+                rating={5}
+                name="Lucas Martins"
+                role="Assinante Clube LP"
               />
 
               <TestimonialCard
-                image={ProfileImageTwo}
-                testimony="A comida é saborosa, prática e chegou perfeitamente preparada. Uma ótima escolha para os dias mais corridos."
+                testimony="Os discos chegam muito bem protegidos e a seleção sempre surpreende. É como receber uma recomendação feita por alguém que conhece minha coleção."
                 rating={5}
-                name="Ryan Gosling"
-                role="Agrônomo"
+                name="Marina Costa"
+                role="Colecionadora"
               />
             </div>
 
             <div className="carousel-content" aria-hidden="true">
               <TestimonialCard
-                image={ProfileImageOne}
-                testimony="Certamente o mercado chinês de elétricos está bombando, só existe uma coisa melhor do que isso: provar uma boa comida DonaFrost no almoço."
-                rating={4}
-                name="Ellon Ma"
-                role="CEO BING CHILLING"
+                testimony="A curadoria realmente entendeu meu gosto. Recebi um disco que eu nunca teria procurado sozinho e ele já virou um dos favoritos da coleção."
+                rating={5}
+                name="Lucas Martins"
+                role="Assinante Clube LP"
               />
 
               <TestimonialCard
-                image={ProfileImageTwo}
-                testimony="A comida é saborosa, prática e chegou perfeitamente preparada. Uma ótima escolha para os dias mais corridos."
+                testimony="Os discos chegam muito bem protegidos e a seleção sempre surpreende. É como receber uma recomendação feita por alguém que conhece minha coleção."
                 rating={5}
-                name="Ryan Gosling"
-                role="Agrônomo"
+                name="Marina Costa"
+                role="Colecionadora"
               />
             </div>
           </section>
         </section>
+
         <section id="pricing" className="container">
           <header>
-            <p className="desktop-only">Planos e preços</p>
-            <h2>Nossos planos</h2>
+            <p className="desktop-only">Escolha seu lado</p>
+            <h2>Planos do clube</h2>
           </header>
 
           <section className="even-columns gap-1.5">
             <div className="pricing-card">
               <span className="plan">
-                <h3>Básico</h3>
-                <p>Você tem direito a uma prova das comidas DonaFrost.</p>
+                <h3>Ouvinte</h3>
+                <p>
+                  Para conhecer o catálogo e começar sua coleção no seu ritmo.
+                </p>
               </span>
 
               <h2>Grátis</h2>
 
-              <Button text="Pedir agora" secondary />
+              <Button text="Começar agora" secondary />
 
               <span className="hr" />
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>Retire na loja</p>
+                <p>Acesso ao catálogo</p>
               </span>
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>Apenas 1 por CPF</p>
+                <p>Lista de desejos</p>
+              </span>
+
+              <span className="features">
+                <img src={Check} alt="Ícone check" width={24} height={24} />
+                <p>Compra avulsa de vinis</p>
               </span>
             </div>
 
             <div className="pricing-card premium">
               <span className="bonus">
-                <p>1º MÊS COM DESCONTO</p>
+                <p>PLANO MAIS ESCOLHIDO</p>
               </span>
 
               <span className="plan">
-                <h3>Premium</h3>
-                <p>Para quem precisa de uma marmita diária, muito saborosa.</p>
+                <h3>Clube LP</h3>
+                <p>
+                  Uma nova descoberta escolhida para você todos os meses.
+                </p>
               </span>
 
               <span className="price">
@@ -309,59 +341,74 @@ export default function Home() {
                 <p>/mês</p>
               </span>
 
-              <Button text="Pedir agora" />
+              <Button text="Assinar Clube LP" />
 
               <span className="hr" />
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>2 entregas</p>
+                <p>1 vinil por mês</p>
               </span>
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>5 refeições por semana</p>
+                <p>Curadoria personalizada</p>
               </span>
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>2 sucos por semana</p>
+                <p>Desconto em compras avulsas</p>
+              </span>
+
+              <span className="features">
+                <img src={Check} alt="Ícone check" width={24} height={24} />
+                <p>Acesso antecipado a lançamentos</p>
               </span>
             </div>
+
             <div className="pricing-card">
               <span className="plan">
-                <h3>Empresarial</h3>
-                <p>Utilize nossa solução na sua empresa. Aprimore seu fluxo.</p>
+                <h3>Colecionador</h3>
+                <p>
+                  Para quem procura raridades, edições especiais e mais música.
+                </p>
               </span>
 
               <span className="price">
-                <h2>R$ 129,90</h2>
+                <h2>R$ 149,90</h2>
                 <p>/mês</p>
               </span>
 
-              <Button text="Pedir agora" secondary />
+              <Button text="Quero colecionar" secondary />
 
               <span className="hr" />
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>Com anúncios</p>
+                <p>2 vinis por mês</p>
               </span>
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>Até 10 produtos por dia</p>
+                <p>Edições especiais e coloridas</p>
               </span>
 
               <span className="features">
                 <img src={Check} alt="Ícone check" width={24} height={24} />
-                <p>Utilize sem limitações</p>
+                <p>Frete grátis</p>
+              </span>
+
+              <span className="features">
+                <img src={Check} alt="Ícone check" width={24} height={24} />
+                <p>Prioridade em discos raros</p>
               </span>
             </div>
           </section>
         </section>
+
         <Contact />
       </main>
+
       <Footer />
     </>
   );

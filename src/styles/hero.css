@@ -1,68 +1,161 @@
 #hero {
-  background: var(--light-gray);
-  border-top: 0.125rem solid #e4e4e4;
-  height: 90vh;
+  position: relative;
+  isolation: isolate;
   display: flex;
+  min-height: calc(100svh - 5.5rem);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 7px,
+      rgb(28 26 23 / 1.5%) 8px
+    ),
+    var(--bg-color);
 }
 
+/* Esconde os antigos retângulos decorativos */
+#hero > span,
 #hero > img {
-  position: absolute;
-  right: 0;
-  height: 60%;
-  padding-left: 30%;
+  display: none;
 }
 
-#hero p {
-  color: var(--second-text-color);
+/* Capa do disco */
+#hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -5rem;
+  bottom: -3rem;
+  width: 21rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--vinyl-color);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-color) 0 43%,
+      var(--secondary-color) 43% 63%,
+      var(--accent-color) 63% 100%
+    );
+  box-shadow:
+    12px 12px 0 rgb(28 26 23 / 10%),
+    inset 0 0 0 0.75rem rgb(255 250 240 / 16%);
+  transform: rotate(-4deg);
+  opacity: 0.14;
+}
+
+/* Disco de vinil */
+#hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: -6rem;
+  top: 8rem;
+  width: 22rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at center,
+      var(--light-text-color) 0 1.4%,
+      var(--primary-color) 1.8% 7%,
+      var(--secondary-color) 7.4% 10%,
+      transparent 10.4%
+    ),
+    repeating-radial-gradient(
+      circle at center,
+      #171613 0 3px,
+      #24221e 4px 5px,
+      #12110f 6px 8px
+    );
+  box-shadow: 0 1.5rem 3rem rgb(28 26 23 / 22%);
+  opacity: 0.12;
 }
 
 #hero .content {
-  z-index: 1;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  margin-top: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 5rem;
   text-align: center;
-  gap: 1.75rem;
+}
+
+#hero h1 {
+  max-width: 52rem;
+  text-wrap: balance;
+}
+
+#hero p {
+  max-width: 40rem;
+  color: var(--second-text-color);
+}
+
+#hero .content > p:first-of-type {
+  color: var(--primary-color);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 #hero .content > div {
   width: fit-content;
   align-self: center;
-  margin-bottom: 20%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
 }
 
 @media (width >= 1280px) {
   #hero {
-    background: var(--bg-color);
-    border-top: none;
+    min-height: calc(100svh - 6rem);
+  }
 
-    > span {
-      position: absolute;
-      top: 0;
-    }
+  /* Capa quadrada à direita */
+  #hero::before {
+    right: clamp(10rem, 13vw, 16rem);
+    bottom: auto;
+    top: 50%;
+    width: clamp(23rem, 27vw, 31rem);
+    transform: translateY(-50%) rotate(-3deg);
+    opacity: 1;
+  }
 
-    > img {
-      top: 0;
-      height: 82%;
-      padding-left: 55%;
-    }
+  /* Vinil saindo de trás da capa */
+  #hero::after {
+    right: clamp(-4rem, 1vw, 1rem);
+    top: 50%;
+    width: clamp(22rem, 25vw, 29rem);
+    transform: translateY(-50%);
+    opacity: 1;
+  }
 
-    .content p {
-      width: 80%;
-      align-self: center;
-    }
+  #hero .content {
+    align-items: flex-start;
+    padding-block: 6rem;
+    text-align: left;
+  }
 
-    .content {
-      gap: 2.5rem;
-    }
+  #hero h1 {
+    max-width: 43rem;
+  }
 
-    .content > div :first-child {
-      width: 10.625rem;
-    }
+  #hero .content > p:last-of-type {
+    width: 35rem;
+    align-self: flex-start;
+  }
 
-    .content p:first-of-type {
-      color: var(--primary-color);
-      font-weight: var(--fw-bold);
-    }
+  #hero .content > div {
+    align-self: flex-start;
+    justify-content: flex-start;
+  }
+
+  #hero .content > div button {
+    min-width: 10.625rem;
   }
 }

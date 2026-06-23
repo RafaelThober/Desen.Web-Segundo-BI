@@ -4,6 +4,13 @@ import nodemailer from "nodemailer";
 interface ContactPayload {
   email: string;
   message: string;
+  recaptchaToken: string;
+}
+
+interface RecaptchaResponse {
+  success: boolean;
+  hostname?: string;
+  "error-codes"?: string[];
 }
 
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? "";
@@ -15,7 +22,7 @@ const corsHeaders = (origin: string) => ({
 });
 
 const handler: Handler = async (event: HandlerEvent) => {
-  const origin = event.headers["origin"] ?? "";
+  const origin = event.headers.origin ?? "";
 
   if (event.httpMethod === "OPTIONS") {
     return {
@@ -49,14 +56,24 @@ const handler: Handler = async (event: HandlerEvent) => {
     };
   }
 
-  const { email, message } = payload;
+  const { email, message, recaptchaToken } = payload;
 
   if (!email?.trim() || !message?.trim()) {
     return {
       statusCode: 422,
       headers: corsHeaders(origin),
       body: JSON.stringify({
-        error: "Campos obrigatórios: email, message.",
+        error: "Preencha o e-mail e a mensagem.",
+      }),
+    };
+  }
+
+  if (!recaptchaToken) {
+    return {
+      statusCode: 422,
+      headers: corsHeaders(origin),
+      body: JSON.stringify({
+        error: "Confirme que você não é um robô.",
       }),
     };
   }
@@ -69,6 +86,64 @@ const handler: Handler = async (event: HandlerEvent) => {
       headers: corsHeaders(origin),
       body: JSON.stringify({
         error: "E-mail inválido.",
+      }),
+    };
+  }
+
+  const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+
+  if (!recaptchaSecret) {
+    console.error("RECAPTCHA_SECRET_KEY não configurada.");
+
+    return {
+      statusCode: 500,
+      headers: corsHeaders(origin),
+      body: JSON.stringify({
+        error: "O reCAPTCHA não está configurado.",
+      }),
+    };
+  }
+
+  try {
+    const verificationResponse = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret: recaptchaSecret,
+          response: recaptchaToken,
+        }).toString(),
+      }
+    );
+
+    const verification =
+      (await verificationResponse.json()) as RecaptchaResponse;
+
+    if (!verification.success) {
+      console.error(
+        "Falha na validação do reCAPTCHA:",
+        verification["error-codes"]
+      );
+
+      return {
+        statusCode: 403,
+        headers: corsHeaders(origin),
+        body: JSON.stringify({
+          error: "Não foi possível validar o reCAPTCHA.",
+        }),
+      };
+    }
+  } catch (error) {
+    console.error("Erro ao consultar o reCAPTCHA:", error);
+
+    return {
+      statusCode: 500,
+      headers: corsHeaders(origin),
+      body: JSON.stringify({
+        error: "Falha ao validar o reCAPTCHA.",
       }),
     };
   }
@@ -88,8 +163,8 @@ const handler: Handler = async (event: HandlerEvent) => {
       from: `<${process.env.SMTP_USER}>`,
       replyTo: email,
       to: process.env.CONTACT_EMAIL,
-      subject: "[Dona Frost] Nova mensagem Landing Page",
-      text: message,
+      subject: "[Sulco] Nova mensagem do clube de vinis",
+      text: `E-mail: ${email}\n\nMensagem:\n${message}`,
       html: `
         <h2>Nova mensagem de contato</h2>
         <p><strong>E-mail:</strong> ${email}</p>

@@ -3,50 +3,197 @@
 }
 
 .reverse-color:hover {
-  color: var(--second-text-color);
+  color: var(--vinyl-color);
 }
 
 .ml-lg {
-  margin-right: 2.875rem;
+  margin-right: 2rem;
 }
 
+/* Cabeçalho principal */
+#root>header {
+  position: relative;
+  z-index: 20;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+#root>header nav {
+  min-height: 4.5rem;
+  gap: 1.5rem;
+}
+
+#root>header nav>img {
+  width: 155px;
+  height: auto;
+  object-fit: contain;
+}
+
+#root>header nav ul {
+  align-items: center;
+}
+
+#root>header nav ul a {
+  position: relative;
+  color: var(--text-color);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#root>header nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.45rem;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+#root>header nav ul a:hover {
+  color: var(--primary-color);
+}
+
+#root>header nav ul a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#root>header nav button {
+  min-height: 3rem;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--vinyl-color);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+#root>header nav button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--vinyl-color);
+}
+
+/* Menu móvel */
 .mobile-menu {
   display: initial;
-  z-index: 3;
+  position: relative;
+  z-index: 30;
+}
+
+.btn-wrapper {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--text-color);
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.btn-wrapper:hover {
+  background-color: var(--secondary-color);
+  transform: rotate(-3deg);
 }
 
 .mobile-menu-content {
-  position: absolute;
+  position: fixed;
+  inset: 0;
   display: flex;
-  top: 0;
-  left: 0;
-  padding-top: 1.5rem;
   width: 100vw;
-  height: 100vh;
-  background: var(--bg-color);
+  height: 100dvh;
+  padding-block: 1.5rem;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 80% 20%,
+      transparent 0 55px,
+      rgb(255 250 240 / 12%) 56px 58px,
+      transparent 59px 88px,
+      rgb(255 250 240 / 8%) 89px 91px,
+      transparent 92px),
+    var(--vinyl-color);
+}
+
+.mobile-menu-content .container {
+  position: relative;
+  width: min(100% - 3rem, 680px);
 }
 
 .mobile-menu-content ul {
   width: 100%;
+  min-height: calc(100dvh - 3rem);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .mobile-menu-content a {
-  font-size: var(--fs-lg);
+  color: var(--light-text-color);
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
-@media (width >= 1280px) {
-  header {
+.mobile-menu-content a:hover {
+  color: var(--secondary-color);
+}
+
+.mobile-menu-content a::after {
+  display: none;
+}
+
+.mobile-menu-content .btn-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-color: var(--light-text-color);
+  background-color: var(--light-text-color);
+}
+
+.mobile-menu-content .btn-wrapper:hover {
+  background-color: var(--secondary-color);
+}
+
+#root>header .mobile-menu-content a {
+  color: var(--light-text-color);
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+#root>header .mobile-menu-content a:hover {
+  color: var(--secondary-color);
+}
+
+#root>header .mobile-menu-content a::after {
+  display: none;
+}
+
+@media (width >=1280px) {
+  #root>header {
     position: relative;
-    z-index: 1;
   }
 
-  nav > img {
-    display: initial;
+  #root>header nav>img {
+    width: 185px;
+  }
+
+  #root>header nav ul {
+    gap: 1.5rem;
   }
 
   .mobile-menu {
